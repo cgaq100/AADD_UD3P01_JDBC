@@ -8,6 +8,12 @@ public class SQL {
                                                                     "AND p.nombre_pizza = ?;" //
     ;
 
+    protected static final String SACAR_PRECIO_PIZZA_POR_NOM_Y_GETPRECIOPIZZA = "SELECT getPrecioPizza(cod_pizza) " +
+                                                                                "FROM pizza " + 
+                                                                                "WHERE nombre_pizza = ?;"
+    ;
+
+    protected static final String AÑADIR_INGREDIENTE_A_PIZZA = "";
 
 
 }

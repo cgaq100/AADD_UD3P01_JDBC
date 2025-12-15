@@ -19,6 +19,11 @@ public class Main {
         dbManager.VolcarIngredientesPizza("Barbacoa");
         dbManager.VolcarIngredientesPizza("Margarita");
 
+        dbManager.RecuperaPrecioPizza("Barbacoa");
+        dbManager.RecuperaPrecioPizza("Margarita");
+
+        dbManager.AñadirIngredienteYCantidadAPizza("piña", 2,"Margarita");
+
         dbManager.CerrarBD();
 
 
