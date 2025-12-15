@@ -22,7 +22,7 @@ public class Main {
         dbManager.RecuperaPrecioPizza("Barbacoa");
         dbManager.RecuperaPrecioPizza("Margarita");
 
-        dbManager.AñadirIngredienteYCantidadAPizza("piña", 2,"Margarita");
+        dbManager.AñadirIngredienteYCantidadAPizza("pollo","Margarita",175);
 
         dbManager.CerrarBD();
 

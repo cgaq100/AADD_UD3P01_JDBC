@@ -171,13 +171,42 @@ public class DbManager {
     // ejemplo CALL addIngredientePizza('Pollo','Margarita',175); Nota: ingrediente y pizza deben existir en la BD
 
 
-    public boolean AñadirIngredienteYCantidadAPizza(String nomIngrediente, int cantidad, String nomPizza)
+    public boolean AñadirIngredienteYCantidadAPizza(String nomIngrediente,String nomPizza, int cantidad)
     {
-        LOG.info("<--Entrando en el metodo AñadirIngredienteYCantidadAPizza con la entrada: "+nomIngrediente+", "+cantidad+" y "+nomPizza+"-->");
+
+        PreparedStatement pstConsulta = null;
+
+
+        LOG.info("<--Entrando en el metodo AñadirIngredienteYCantidadAPizza con la entrada: "+nomIngrediente+", "+nomPizza+" y "+cantidad+"-->");
 
         boolean status = false;
 
-        
+        try
+        {
+            pstConsulta = con.prepareStatement(SQL.AÑADIR_INGREDIENTE_A_PIZZA);
+            // (ingrediente:'pollo', pizza:'margarita', cantidad:175)
+            pstConsulta.setString(1, nomIngrediente);
+            pstConsulta.setString(2, nomPizza);
+            pstConsulta.setInt(3, cantidad);
+
+            pstConsulta.executeUpdate();
+
+            LOG.debug("Se ha realizado satisfactoriamente la insercion de "+nomIngrediente+" en la pizza: "+nomPizza+" con una cantidad de "+cantidad);
+            status = true;
+        }
+        catch(SQLException e){}
+        finally
+        {
+            if (pstConsulta != null)
+            {
+                try 
+                {
+                    pstConsulta.close();
+                } 
+                catch (SQLException e) {LOG.error("Error durante la liberacion de recursos en el alta transaccional: "+ e.getMessage());}
+                LOG.debug("Liberacion de recursos satisfactoria durante el alta transaccional");
+            }
+        }
 
 
         LOG.info("<--Saliendo del metodo AñadirIngredienteYCantidadAPizza con la salida: "+status+"-->");
