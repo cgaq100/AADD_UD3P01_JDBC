@@ -1,5 +1,7 @@
 package es.ciudadescolar;
 
+import java.util.HashMap;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,6 +25,20 @@ public class Main {
         dbManager.RecuperaPrecioPizza("Margarita");
 
         dbManager.AñadirIngredienteYCantidadAPizza("pollo","Margarita",175);
+
+
+        // pizza 3 "Melanzana", precio 16€, ingredientes: Mozzarella 425g, Tomate 245g, Berenjena 600g, Aceite balsámico 90g
+
+
+        HashMap<String, Integer> ingredientes = new HashMap<>();
+        ingredientes.put("Mozzarella", 425);
+        ingredientes.put("Tomate", 245);
+        ingredientes.put("Berenjena", 600);
+        ingredientes.put("Aceite balsámico", 90);
+
+        dbManager.AltaPizzaYSusIngredientes("Melanzana", 16, ingredientes);
+
+
 
         dbManager.CerrarBD();
 
